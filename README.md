@@ -6,7 +6,7 @@ Welcome Nerds! To a world that I will showcase my works, the hobbies that I enjo
 
 # Languages
 
-Well I am most working on Next.js truly understanding the concept of React and its framework plus typescript!
+Well I am mostly working on Next.js, truly understanding the concept of React and its framework plus typescript!
 
 # Features
 
