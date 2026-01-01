@@ -9,11 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        gold: "#d4af37",
+        gold: "#D4AF37",
       },
     },
   },
   plugins: [typography],
+};
+
+module.exports = {
+  darkMode: "class",
+  content: [
+  "./app/**/*.{js,ts,jsx,tsx}",
+  "./components/**/*.{js,ts,jsx,tsx}",
+
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 };
 
 export default config;

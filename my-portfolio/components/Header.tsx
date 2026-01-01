@@ -1,17 +1,53 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import ThemeToggle from "./ThemeToggle";
+
 
 export default function Header() {
-  return (
-    <header className="border-b border-gold px-4 md:px-8 py-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-      <h1 className="text-xl md:text-2xl font-bold text-gold text-center md:text-left">
-        My Portfolio
-      </h1>
+  const pathname = usePathname();
 
-      <nav className="flex justify-center md:justify-end gap-4 text-sm md:text-base">
-        <Link href="/" className="hover:text-gold">Home</Link>
-        <Link href="/about" className="hover:text-gold">About</Link>
-        <Link href="/portfolio" className="hover:text-gold">Portfolio</Link>
-        <Link href="/blog" className="hover:text-gold">Blog</Link>
+  const linkClass = (href: string) =>
+    `relative px-1 py-2 transition ${
+      pathname === href ? "text-gold" : "text-gray-700"
+    }`;
+
+  return (
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-200">
+      <nav className="max-w-6xl mx-auto px-6 md:px-16 h-16 flex items-center justify-between">
+        
+        {/* Logo */}
+        <Link href="/" className="font-bold text-lg">
+          Yahwenissi<span className="text-gold">.</span>
+        </Link>
+
+        {/* Navigation */}
+        <div className="flex gap-8">
+          {[
+            { name: "Home", href: "/" },
+            { name: "Projects", href: "/portfolio" },
+            { name: "Blog", href: "/blog" },
+            { name: "About", href: "/about" },
+          ].map((link) => (
+            <Link key={link.href} href={link.href} className={`group ${linkClass(link.href)}`}>
+
+              {link.name}
+              <span
+                className={`absolute left-0 -bottom-1 h-[2px] bg-gold transition-all duration-300
+                  ${
+                    pathname === link.href
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                  }`}
+              />
+            </Link>
+          ))}
+        </div>
+        <div className="flex items-center gap-6">
+        {/* nav links here */}
+           <ThemeToggle />
+        </div>
       </nav>
     </header>
   );
